@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "Hugo XMag"
+title = "Xaringan themes"
 theme = "hugo-xmag"
 googleAnalytics = ""
 disqusShortname = ""
@@ -9,7 +9,7 @@ preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 hasCJKLanguage = true
 enableEmoji = true
-paginate = 6
+paginate = 24
 
 
 [[menu.main]]
@@ -35,9 +35,7 @@ paginate = 6
 [params]
     description = "A website built through Hugo and blogdown."
     summary_length = 300
-    github_edit = "https://github.com/yihui/hugo-xmag/edit/master/exampleSite/content/"
-    footer = "&copy; [Yihui Xie](https://yihui.name) 2017 | [Github](https://github.com/yihui) | [Twitter](https://twitter.com/xieyihui)"
-
+    footer = "a fancy footer"
 [params.text]
     back = "&larr; Back to Home"
     edit = "Edit this page &rarr;"
