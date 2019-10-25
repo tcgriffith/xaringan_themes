@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571987455718.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3857152068",
+    "id" : "F9BFD972",
+    "lastKnownWriteTime" : 1571987477,
+    "last_content_update" : 1571987477032,
+    "path" : "~/GIT/xaringan_themes/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "42,34",
+        "scrollLine" : "26"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
