@@ -1,6 +1,6 @@
 [submodule "content/themes/xaringan_theme_example"]
 	path = content/themes/xaringan_theme_example
-	url = git@github.com:tcgriffith/xaringan_theme_example
+	url = https://github.com/tcgriffith/xaringan_theme_example
 [submodule "themes/hugo-owaraiclub"]
 	path = themes/hugo-owaraiclub
-	url = git@github.com:tcgriffith/hugo-owaraiclub
+	url = https://github.com/tcgriffith/hugo-owaraiclub
