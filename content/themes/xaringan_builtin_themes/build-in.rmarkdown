@@ -1,0 +1,64 @@
+---
+title: "xaringan_builtin_theme"
+author: "TC"
+date: '2019-10-27'
+description: all builtin themes of xaringan
+tags: [xaringan]
+thumbnail: https://github.com/emitanaka/ninja-theme/raw/master/docs/themes/kunoichi/images/kunoichi-showcase.gif
+categories: theme
+toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description
+
+Here is a collection of the build-in themes in xaringan.
+
+```{r}
+example_slide=xfun::file_string("./template.Rmd")
+
+builtins = names(xaringan:::list_css())
+
+builtins_excludefont=builtins[!grepl("font", builtins)]
+```
+
+
+```{r eval=FALSE}
+dummy = lapply(builtins_excludefont, function(name){
+  
+  newstr=paste0("use_theme('",name,"')")
+  newfile = gsub('use_theme\\(\"tcgriffith/xaringan_theme_example\"\\)',newstr,example_slide)
+  
+  writeLines(newfile, con = here::here("static/slides/",paste0("xaringan_",name,".Rmd")))
+  
+})
+
+blogdown::build_dir(here::here("static"))
+```
+
+
+## All built-in themes
+
+```{r results="asis"}
+slides=list.files(here::here("static/slides"), pattern="html$")
+
+# slides
+dummy = lapply(slides, function(fname){
+  writeLines(sprintf("### %s",gsub(".html","",basename(fname))))
+  
+  writeLines(sprintf("[link](/slides/%s)\n\n", fname))
+  
+  writeLines(sprintf(
+'<div class="resp-container">
+<iframe class="testiframe" src="/slides/%s">
+    Fallback text here for unsupporting browsers, of which there are scant few.
+</iframe>
+</div>\n\n',
+    fname))
+})
+```
+
+

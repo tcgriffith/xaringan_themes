@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Presentation Ninja</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Yihui Xie" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Presentation Ninja
+## ⚔<br/>with xaringan
+### Yihui Xie
+### RStudio, Inc.
+### 2016/12/12 (updated: 2019-10-28)
+
+---
+
+
+
+
+
+---
+
+## use_theme!
+
+
+```r
+use_theme = function(theme = "tcgriffith/xaringan_theme_example", ref =
+                              "master") {
+  bn = basename(theme)
+  
+  builtin_css = xaringan:::list_css()
+  builtin_theme = names(builtin_css)
+  
+  if (theme %in% builtin_theme) {
+    css_local = builtin_css[theme]
+  } else{
+    css_remote = sprintf("https://raw.githubusercontent.com/%s/%s/%s.css",
+                         theme,
+                         ref,
+                         bn)
+    xfun::download_file(css_remote)
+    css_local = basename(css_remote)
+  }
+  
+  htmltools::includeCSS(css_local)
+}
+
+use_theme('kunoichi')
+```
+
+<style type="text/css">@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+/******************
+ kunoichi.css must also be coupled with ninjutsu.css to be effective
+ See https://emitanaka.github.io/ninja-theme/kunoichi-theme-example.html for an example.
+
+******************/
+
+
+:root {
+    --main-color1: rgba(86,36,87,1);
+    --main-color2: #9C27B0;
+    --main-color3: #BA68C8;
+    --main-color4: #CE93D8;
+    --main-color5: white;
+    --text-color1: white;
+    --text-color2: white;
+    --text-color3: white;
+    --text-color4: white;
+    --text-color5: black;
+    --text-opacity: white;
+    --link-color: #ecadec;
+    --alert-color: #CF3C18;
+    --text-alert: white;
+    --code-background: #f8f8f8;
+    --code-inline-color: #FFD740;
+    --code-text-color: black;
+    --code-highlight: rgba(136, 57, 138, 0.3);
+    --color-opacity70: rgba(86,36,87,0.7);
+    --color-opacity50: rgba(86,36,87,0.5);
+    --color-opacity30: rgba(86,36,87,0.3);
+    --logo: url("https://emitanaka.github.io/ninja-theme/images/R-LadiesGlobal-transparent.png");
+}
+
+.title-slide {
+  width: 60%;
+  text-align: left!important;
+  height:100%;
+  display: table;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-opacity70);
+  color: white;
+  padding: 0;
+  border-left-color: white;
+  border-left-style: solid;
+  border-left-width: 0.5em;
+}
+
+.remark-slide {
+  background-color: var(--main-color3);
+  background-image: var(--logo);
+  background-size:  10%;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+}
+
+.bg-code {
+  color: var(--code-text-color);
+  background-color: var(--code-background);
+}
+
+
+.title-slide h1 { padding-top: 20%; font-size: 4em;}
+.title-slide h1, .title-slide h2, .title-slide h3  {
+  padding-left: 4%!important;
+  padding-right: 4%!important;
+}
+
+.title-slide .remark-slide-number { display: none; }
+
+.bg-main1 { background-color: var(--main-color1); color: var(--text-color1);}
+.bg-main2 { background-color: var(--main-color2); color: var(--text-color2);}
+.bg-main3 { background-color: var(--main-color3); color: var(--text-color3);}
+.bg-main4 { background-color: var(--main-color4); color: var(--text-color4);}
+.bg-main5 { background-color: var(--main-color5); color: var(--text-color5);}
+.bgcolor_alert { background-color: var(--alert-color)!important; color: var(--text-alert); }
+
+.color-main1 { color: var(--main-color1);}
+.color-main2 { color: var(--main-color2);}
+.color-main3 { color: var(--main-color3);}
+.color-main4 { color: var(--main-color4);}
+.color-main5 { color: var(--main-color5);}
+.color-alert { color: var(--alert-color);}
+
+.shade_main  {
+    background-color: var(--color-opacity70);
+    color: var(--text-opacity);
+    width: 100%;
+    padding: 0;
+}
+
+.remark-visible .remark-slide-scaler {overflow-y: auto;}
+.remark-code {
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.font-mono {
+  font-family: monospace;
+}
+
+
+.remark-code-line-highlighted { background-color: var(--code-highlight); }
+
+
+h1, h2, h3, body{
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code {
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+  color: var(--code-inline-color);
+}
+.remark-code {
+  color: var(--code-text-color);
+  background-color: var(--code-background);
+}
+
+pre {
+  color: var(--code-text-color);
+  background-color: var(--code-background);
+  line-height: 1.5;
+  padding: 5px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+
+body{
+  font-size: 1em;
+}
+
+a { color: var(--link-color); text-decoration: none; }</style>
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+class: center, middle
+
+# xaringan
+
+### /ʃaː.'riŋ.ɡan/
+
+
+---
+class: bg-red
+
+# I am red!
+
+
+---
+class: bg-bisque
+
+# I am bisque!
+
+---
+class: bg-blue
+
+# I am blue, 
+
+# if it's not blue, you are using an old version of the theme!
+
+the init version doesn't have blue!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

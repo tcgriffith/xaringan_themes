@@ -168,8 +168,8 @@ h1,h2,h3,h4,h5,h6{
   margin:auto;
   position: relative;
   border-radius: 5px;
-  /*height: 7.5em;*/
-  width: 10em;
+  height: 10em;
+  /*width: 10em;*/
 }
 
 .article-card-container{

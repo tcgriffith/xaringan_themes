@@ -1,0 +1,71 @@
+---
+title: "Presentation Ninja"
+subtitle: "⚔<br/>with xaringan"
+author: "Yihui Xie"
+institute: "RStudio, Inc."
+date: "2016/12/12 (updated: 2019-10-28)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+draft: true
+---
+
+
+
+<hr />
+<div id="use_theme" class="section level2">
+<h2>use_theme!</h2>
+<pre class="r"><code>use_theme = function(theme = &quot;tcgriffith/xaringan_theme_example&quot;, ref =
+                              &quot;master&quot;) {
+  bn = basename(theme)
+  
+  builtin_css = xaringan:::list_css()
+  builtin_theme = names(builtin_css)
+  
+  if (theme %in% builtin_theme) {
+    css_local = builtin_css[theme]
+  } else{
+    css_remote = sprintf(&quot;https://raw.githubusercontent.com/%s/%s/%s.css&quot;,
+                         theme,
+                         ref,
+                         bn)
+    xfun::download_file(css_remote)
+    css_local = basename(css_remote)
+  }
+  
+  htmltools::includeCSS(css_local)
+}
+
+use_theme(&quot;tcgriffith/xaringan_theme_example&quot;)</code></pre>
+<style type="text/css">.bg-red{
+  background-color: red;
+}
+
+.bg-bisque{
+  background-color: bisque;
+}
+
+.bg-blue{
+  background-color: blue;
+}</style>
+<hr />
+<p>background-image: url(<a href="https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg" class="uri">https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg</a>)</p>
+<p>???</p>
+<p>Image credit: <a href="https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg">Wikimedia Commons</a></p>
+<p>class: bg-red</p>
+</div>
+<div id="i-am-red" class="section level1">
+<h1>I am red!</h1>
+<p>class: bg-blue</p>
+</div>
+<div id="i-am-blue" class="section level1">
+<h1>I am blue,</h1>
+</div>
+<div id="if-its-not-blue-you-are-using-an-old-version-of-the-theme" class="section level1">
+<h1>if it’s not blue, you are using an old version of the theme!</h1>
+<p>the init version doesn’t have blue!</p>
+</div>
