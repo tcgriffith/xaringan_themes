@@ -1,2 +1,4 @@
-"Yihui Xie": "Yihui Xie is currently a softwaren engineer at [RStudio](https://www.rstudio.com). You can find more information about him at https://yihui.name."
-"Frida Gomam": "Frida Gomam is a joke."
+list:
+  - name: TC
+    image: https://i.imgur.com/2NLJP8V.jpg
+    intro: TC https://tc.rbind.io
