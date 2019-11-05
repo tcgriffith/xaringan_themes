@@ -3,10 +3,11 @@ title: "xaringan_builtin_theme"
 author: "TC"
 date: '2019-10-27'
 description: all builtin themes of xaringan
-tags: [xaringan]
+tags: [xaringan, builtin]
 thumbnail: https://github.com/emitanaka/ninja-theme/raw/master/docs/themes/kunoichi/images/kunoichi-showcase.gif
 categories: theme
 toc: true
+draft: true
 ---
 
 ```{r setup, include=FALSE}
@@ -61,4 +62,62 @@ dummy = lapply(slides, function(fname){
 })
 ```
 
+
+```{r eval=FALSE}
+
+dummy = pbapply::pblapply(slides, function(aslide){
+  path = here::here(paste0("/static/slides/",aslide))
+  pagedown::chrome_print(path, format= "png")
+})
+```
+
+```{r}
+slides.tb=list.files(here::here("static/slides"), pattern="png$", full.names=TRUE)
+```
+
+```{r}
+dummy = lapply(slides, function(fname){
+  
+  atb = paste0("/slides/",gsub("html$","png",fname))
+  atitle= gsub(".html","",basename(fname))
+  adesc="A built-in theme from xaringan package"
+  
+  header.l= list(
+    author= "xaringan theme authors",
+    categories= c("theme"),
+    date= "2019-11-05",
+    tags=c("xaringan","builtin"),
+    thumbnail= atb,
+    title = atitle,
+    description = adesc
+  )
+  
+  header.yaml = yaml::as.yaml(header.l)
+  
+  content = paste0(
+    sprintf("### %s",gsub(".html","",basename(fname))),
+    "\n\n",
+    sprintf("[link](/slides/%s)\n\n", fname),
+    "\n\n",
+    sprintf(
+'<div class="resp-container">
+<iframe class="testiframe" src="/slides/%s">
+    Fallback text here for unsupporting browsers, of which there are scant few.
+</iframe>
+</div>\n\n',
+    fname),
+   "\n"
+  )
+  
+  post = paste0(
+    "---\n",
+    header.yaml,
+    "---\n",
+                "\n\n",
+                content)
+  
+  writeLines(post, con= paste0("./",atitle,".md") )
+
+})
+```
 

@@ -16,7 +16,7 @@
         <div class="roundit  container1em shadowbox">
             <h4>Theme show case</h4>
             <main class="list flexcol">
-                {{ range first 5 (shuffle (where .Site.RegularPages "Section" "themes")) }}
+                {{ range (shuffle (where .Site.RegularPages "Section" "themes")) }}
                 {{ partial "article_justfig.html" . }}
                 {{ end }}
             </main>
